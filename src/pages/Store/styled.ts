@@ -1,6 +1,7 @@
 import styled, { css } from "styled-components";
 import * as S from "../../components/GameCard/styled";
 import media from "styled-media-query";
+import * as SEmpty from "../../components/Empty/styled";
 
 export const Wrapper = styled.div`
   height: 100vh;
@@ -104,6 +105,17 @@ export const Card = styled.div`
 justify-content: center;
 margin-left:0.8rem ;
 `}
+  ${SEmpty.Content} {
+    width: 100%;
+
+    position: relative;
+    left: -5rem;
+    h4 {
+      font-size: 4rem;
+
+      color: white;
+    }
+  }
   display: flex;
   grid-area: gamecard;
   justify-content: flex-start;

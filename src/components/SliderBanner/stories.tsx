@@ -6,32 +6,33 @@ const items = [
   {
     title: "Read dead is Back",
     subTitle: "Faroeste volta ao seu mundo",
-    backgroundImg: "https://wallpapercave.com/wp/wp3363181.jpg",
+    photos: [{ url: "https://wallpapercave.com/wp/wp3363181.jpg" }],
+  },
+
+  {
+    title: "Read dead is Back",
+    subTitle: "Faroeste volta ao seu mundo",
+    photos: [{ url: "https://wallpapercave.com/wp/wp3363181.jpg" }],
   },
   {
     title: "Read dead is Back",
     subTitle: "Faroeste volta ao seu mundo",
-    backgroundImg: "https://wallpapercave.com/wp/wp3363181.jpg",
+    photos: [{ url: "https://wallpapercave.com/wp/wp3363181.jpg" }],
   },
   {
     title: "Read dead is Back",
     subTitle: "Faroeste volta ao seu mundo",
-    backgroundImg: "https://wallpapercave.com/wp/wp3363181.jpg",
+    photos: [{ url: "https://wallpapercave.com/wp/wp3363181.jpg" }],
   },
   {
     title: "Read dead is Back",
     subTitle: "Faroeste volta ao seu mundo",
-    backgroundImg: "https://wallpapercave.com/wp/wp3363181.jpg",
+    photos: [{ url: "https://wallpapercave.com/wp/wp3363181.jpg" }],
   },
   {
     title: "Read dead is Back",
     subTitle: "Faroeste volta ao seu mundo",
-    backgroundImg: "https://wallpapercave.com/wp/wp3363181.jpg",
-  },
-  {
-    title: "Read dead is Back",
-    subTitle: "Faroeste volta ao seu mundo",
-    backgroundImg: "https://wallpapercave.com/wp/wp3363181.jpg",
+    photos: [{ url: "https://wallpapercave.com/wp/wp3363181.jpg" }],
   },
 ];
 

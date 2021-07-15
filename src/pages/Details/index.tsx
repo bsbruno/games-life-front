@@ -5,22 +5,16 @@ import * as S from "./styled";
 import Button from "../../components/Button/Button";
 import Heading from "../../components/Heading/Heading";
 import Footer from "../../components/Footer/Footer";
-import CoverBanner from "../../components/CoverBanner/CoverBanner";
+import { FiShoppingCart } from "react-icons/fi";
 import GameCardSlider from "../../components/GameCardSlider";
 import { GameCardProps } from "../../components/GameCard/GameCard";
-import banner from "../../assets/attBanner.png";
-import banner2 from "../../assets/attBanner.png";
-import { useParams } from "react-router-dom";
-import api from "../../services/api";
-/* export type DetailsGamesProp = {
-  title?: string;
-  backgroundImg?: string;
-  price?: string;
-  description?: string;
-  develop?: string;
-};
+import { MdRemoveShoppingCart } from "react-icons/md";
 
-}; */
+import { useParams } from "react-router-dom";
+import { useCart } from "../../hooks/cart";
+import api from "../../services/api";
+import { formatValue } from "../../utils/formatValue";
+
 type SlugProps = {
   slug: string;
 };
@@ -33,9 +27,9 @@ export default function Details({
   ...props
 }: GameCardProps) {
   const params = useParams<SlugProps>();
-  const [games, setGames] = useState<GameCardProps[]>([]);
+
   const [uniqueGame, setUniqueGame] = useState({} as GameCardProps);
-  /*   uniqueGame.map((i) => console.log(i.photos)); */
+  const { addToCart, isInCart, removeToCart } = useCart();
 
   async function handleGamesSlug() {
     const response = await api.get(`/games/${params.slug}`);
@@ -45,24 +39,19 @@ export default function Details({
     handleGamesSlug();
   }, []);
 
-  const total = 10;
-
-  async function handleGamesList() {
-    const response = await api.get(`/games/num/${total}`);
-
-    setGames(response.data);
+  function handleAddToCart(game) {
+    addToCart(game);
+    isInCart(game);
   }
 
-  useEffect(() => {
-    handleGamesList();
-  }, []);
-  console.log(uniqueGame.photos);
+  function handleRemoveToCart(game) {
+    removeToCart(game);
+  }
 
   return (
     <>
-      {/* photos.find((i) => i.url) */}
       <S.Wrapper>
-        <S.Background photos={banner}>
+        <S.Background photos={uniqueGame.photos}>
           <S.Teste>
             <Menu />
           </S.Teste>
@@ -75,9 +64,28 @@ export default function Details({
             <S.Description>{uniqueGame.description}</S.Description>
             <S.Price>
               {" "}
-              <p> {uniqueGame.price} </p>{" "}
+              <p> {formatValue(Number(uniqueGame.price))} </p>{" "}
             </S.Price>
-            <Button size="large"> Buy Now</Button>
+            {!isInCart(uniqueGame.slug) ? (
+              <Button
+                size="large"
+                onClick={() => handleAddToCart(uniqueGame.slug)}
+              >
+                {" "}
+                <span>Adicionar Ao Carrinho</span>
+                <FiShoppingCart size={20} />
+              </Button>
+            ) : (
+              <Button
+                size="large"
+                color="terciary"
+                onClick={() => handleRemoveToCart(uniqueGame.slug)}
+              >
+                {" "}
+                <span> Remover do Carrinho</span>
+                <MdRemoveShoppingCart size={20} />
+              </Button>
+            )}
           </S.Content>
 
           <S.ContentMobile>
@@ -87,18 +95,31 @@ export default function Details({
             <S.Description>{uniqueGame.description}</S.Description>
             <S.Price>
               {" "}
-              <p>{uniqueGame.price}</p>{" "}
+              <p>{formatValue(Number(uniqueGame.price))}</p>{" "}
             </S.Price>
-            <Button size="large"> Buy Now</Button>
+            {!isInCart(uniqueGame.slug) ? (
+              <Button
+                size="large"
+                onClick={() => handleAddToCart(uniqueGame.slug)}
+              >
+                {" "}
+                <span>Adicionar Ao Carrinho</span>
+                <FiShoppingCart size={20} />
+              </Button>
+            ) : (
+              <Button
+                size="large"
+                color="terciary"
+                onClick={() => handleRemoveToCart(uniqueGame.slug)}
+              >
+                {" "}
+                <span> Remover do Carrinho</span>
+                <MdRemoveShoppingCart size={20} />
+              </Button>
+            )}
           </S.ContentMobile>
         </Container>
-        <S.MoreGamesSection>
-          <Heading size="large" color="white">
-            {" "}
-            Mais Jogos
-          </Heading>
-          <GameCardSlider items={games} />
-        </S.MoreGamesSection>
+        <S.MoreGamesSection></S.MoreGamesSection>
         <Footer />
       </S.Wrapper>
     </>

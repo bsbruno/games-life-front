@@ -1,10 +1,11 @@
 import React from "react";
 import * as S from "./styled";
 import Button from "../Button/Button";
-import { FiShoppingCart } from "react-icons/fi";
+import { FiShoppingCart, FiActivity } from "react-icons/fi";
+import { MdRemoveShoppingCart } from "react-icons/md";
 import teste from "../../assets/attBanner.png";
 import { useParams, useHistory } from "react-router-dom";
-
+import { useCart } from "../../hooks/cart";
 export type GameCardProps = {
   id?: string;
   slug?: string;
@@ -32,13 +33,23 @@ export default function GameCard({
   description,
   ...props
 }: GameCardProps) {
+  const { addToCart, removeToCart, isInCart } = useCart();
+
   const hit = useHistory();
-  const page = hit.location.pathname;
+
   function reloadPage(url) {
-    console.log(url);
     hit.push(`${url}`);
     window.location.reload();
   }
+
+  async function handleAddToCart(game) {
+    addToCart(game);
+  }
+
+  function handleRemoveToCart(game) {
+    removeToCart(game);
+  }
+
   return (
     <S.Wrapper>
       <S.LinkGameCard
@@ -66,12 +77,21 @@ export default function GameCard({
             {" "}
             <p>{price}</p>{" "}
           </S.Price>
+
           <Button
             size="small"
             color="secondary"
-            onClick={() => console.log("botao card")}
+            onClick={() =>
+              !isInCart(props.slug)
+                ? handleAddToCart(props.slug)
+                : handleRemoveToCart(props.slug)
+            }
           >
-            <FiShoppingCart />{" "}
+            {!isInCart(props.slug) ? (
+              <FiShoppingCart />
+            ) : (
+              <MdRemoveShoppingCart size={18} />
+            )}
           </Button>
         </S.PriceBox>
       </S.Content>

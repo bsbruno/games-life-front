@@ -1,6 +1,8 @@
 import styled from "styled-components";
 import * as S from "../../components/GameCard/styled";
 import * as Smenu from "../../components/Menu/styled";
+import * as SbannerSlider from "../../components/CoverBanner/styled";
+import media from "styled-media-query";
 
 export const Wrapper = styled.div`
   padding-top: 1rem;
@@ -16,6 +18,13 @@ export const Content = styled.div`
   margin: 0 auto;
   display: flex;
   flex-direction: column;
+  ${media.greaterThan("medium")`
+
+${SbannerSlider.Wrapper} {
+    height: 400px;
+
+  }
+`}
 `;
 
 export const GamesSectorOne = styled.div`

@@ -5,9 +5,7 @@ import media from "styled-media-query";
 
 export const Wrapper = styled.div`
   ${({ theme }) => css`
-    ${media.lessThan("huge")`
-      overflow-x: hidden;
-    `}
+
     .slick-track,
     .slick-list {
       display: flex;

@@ -1,96 +1,28 @@
-import React from "react";
+import React, { useState } from "react";
 import Cart from "../Cart";
-
+import api from "../../services/api";
 import CartList from "../CartList";
 import Dropdown from "../Dropdown";
 import { GameItemProps } from "../GameItem";
 import * as S from "./styled";
-
-const gameCardIntem = [
-  {
-    name: "Nome do produto",
-
-    price: "R$:240.50",
-    develop: {
-      name: "Rockstar Games",
-    },
-    promotionalPrice: "130.0",
-  },
-  {
-    name: "Nome do produto",
-
-    price: "R$:240.50",
-    develop: {
-      name: "Rockstar Games",
-    },
-    promotionalPrice: "130.0",
-  },
-  {
-    name: "Nome do produto",
-
-    price: "R$:240.50",
-    develop: {
-      name: "Rockstar Games",
-    },
-    promotionalPrice: "130.0",
-  },
-  {
-    name: "Nome do produto",
-
-    price: "R$:240.50",
-    develop: {
-      name: "Rockstar Games",
-    },
-    promotionalPrice: "130.0",
-  },
-  {
-    name: "Nome do produto",
-
-    price: "R$:240.50",
-    develop: {
-      name: "Rockstar Games",
-    },
-    promotionalPrice: "130.0",
-  },
-  {
-    name: "Nome do produto",
-
-    price: "R$:240.50",
-    develop: {
-      name: "Rockstar Games",
-    },
-    promotionalPrice: "130.0",
-  },
-  {
-    name: "Nome do produto",
-
-    price: "R$:240.50",
-    develop: {
-      name: "Rockstar Games",
-    },
-    promotionalPrice: "130.0",
-  },
-  {
-    name: "Nome do produto",
-
-    price: "R$:240.50",
-    develop: {
-      name: "Rockstar Games",
-    },
-    promotionalPrice: "130.0",
-  },
-];
+import { useCart } from "../../hooks/cart";
+import Empty from "../Empty";
 
 export type CardDropDow = {
   items?: GameItemProps[];
   total?: number;
 };
 
-export default function CartDropDow({ items, total }: CardDropDow) {
+export default function CartDropDow() {
+  const { products } = useCart();
   return (
     <S.Wrapper>
-      <Dropdown name={<Cart quantity={items?.length} />}>
-        <CartList items={gameCardIntem} total={total} hasButton />
+      <Dropdown name={<Cart />}>
+        {products.length > 0 ? (
+          <CartList hasButton />
+        ) : (
+          <Empty message=" Parece que seu carrinho está vazio" />
+        )}
       </Dropdown>
     </S.Wrapper>
   );

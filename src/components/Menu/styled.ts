@@ -182,4 +182,7 @@ export const CartDropDownMobile = styled.div`
   position: relative;
   left: 20px;
   top: 3px;
+  ${media.greaterThan("medium")`
+  display: none;
+  `}
 `;

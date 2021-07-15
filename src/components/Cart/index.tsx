@@ -1,15 +1,15 @@
 import React from "react";
 import { FiShoppingCart } from "react-icons/fi";
 import * as S from "./styled";
-export type CartIconProps = {
-  quantity?: number;
-};
+import { useCart } from "../../hooks/cart";
 
-export default function Cart({ quantity }: CartIconProps) {
+export default function Cart() {
+  const { products } = useCart();
+
   return (
     <S.Wrapper>
       <FiShoppingCart />
-      {quantity > 0 && <S.CartIcon>{quantity} </S.CartIcon>}
+      {products.length > 0 && <S.CartIcon>{products.length} </S.CartIcon>}
     </S.Wrapper>
   );
 }

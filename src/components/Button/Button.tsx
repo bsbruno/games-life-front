@@ -7,10 +7,11 @@ type ButtonTypes = ButtonHTMLAttributes<HTMLButtonElement>;
 
 export type ButtonProps = {
   children: React.ReactNode;
-  color?: "primary" | "secondary";
+  color?: "primary" | "secondary" | "terciary";
   icon?: JSX.Element;
   size?: "small" | "medium" | "large";
   fullWidth?: boolean;
+
   as?: React.ElementType;
 } & ButtonTypes;
 
@@ -18,7 +19,7 @@ export default function Button({
   children,
   color = "primary",
   icon,
-  /*   onClick, */
+
   size,
   fullWidth = false,
   ...props

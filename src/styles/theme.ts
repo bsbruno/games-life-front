@@ -26,6 +26,7 @@ const theme: MyTheme = {
     primary: "#0074E4",
     secondary: "#C47AF5",
     terciary: "#35BDAC",
+
     mainBg: "#121212",
     white: "#FAFAFA",
     black: "#030517",

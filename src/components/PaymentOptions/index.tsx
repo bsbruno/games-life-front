@@ -5,15 +5,27 @@ import Button from "../Button/Button";
 import MasterCard from "../../assets/svg/Master.svg";
 import visa from "../../assets/svg/visa.svg";
 import { Formik, Form, Field } from "formik";
+import { useCart } from "../../hooks/cart";
+import {
+  CreditCardRegex,
+  cardReplace,
+  dateCard as cardDateRepalce,
+  cvcReplace,
+} from "../../utils/regexPayment";
 import * as Yup from "yup";
 
-const CreditCardSchema = (value) => {
-  console.log(value);
-};
-
 export default function PaymentOptions() {
-  const [card, setCard] = useState("");
-  console.log(card);
+  const [numberCard, setNumberCard] = useState("");
+  const [dateCard, setDateCard] = useState("");
+  const [cvcCard, setCvcCard] = useState("");
+  async function handleSubmit(event) {
+    event.preventDefault();
+    console.log(numberCard.replace(/\.|\-/g, ""));
+    console.log(dateCard);
+  }
+
+  const { total } = useCart();
+
   return (
     <S.Wrapper>
       <S.Content>
@@ -24,45 +36,59 @@ export default function PaymentOptions() {
           <span>Credito/Debito</span>
         </S.CardTitle>
         <S.FormPayment>
-          <Formik
-            initialValues={{ card: "", cvc: "", dataExpire: "" }}
-            onSubmit={(values) => {
-              console.log(values);
-            }}
-          >
-            <Form>
-              <label htmlFor="card">Card</label>
-              <Field
-                type="text"
-                name="card"
-                onChange={(e) => setCard(e.target.value)}
-                id="card"
-              />
-              <S.Teste>
-                <div>
-                  {" "}
-                  <label htmlFor="dataExpire">data Expiração</label>
-                  <Field
-                    type="numeric"
-                    name="dataExpire"
-                    id="dataExpire"
-                    placeholder="MM/yyyy"
-                  />
-                </div>
+          <form onSubmit={handleSubmit}>
+            <label htmlFor="card">Card</label>
+            <input
+              type="text"
+              name="card"
+              id="card"
+              value={cardReplace(numberCard)}
+              placeholder="Numero do cartão"
+              onChange={(e) => setNumberCard(e.target.value)}
+            />
+            <label htmlFor="card">Nome</label>
+            <input
+              type="text"
+              name="nameCard"
+              id="nameCard"
+              placeholder="Nome do cartão"
+            />
 
-                <div>
-                  <label htmlFor="cvc">cvc</label>
-                  <Field type="numeric" name="cvc" id="cvc" placeholder="123" />
-                </div>
-              </S.Teste>
-              <S.Footer>
+            <S.Teste>
+              <div>
                 {" "}
-                <Button color="primary" type="submit">
-                  Pagar Agora
-                </Button>
-              </S.Footer>
-            </Form>
-          </Formik>
+                <label htmlFor="dataExpire">data Expiração</label>
+                <input
+                  type="text"
+                  name="dataExpire"
+                  id="dataExpire"
+                  placeholder="MM/yy"
+                  pattern="\d\d/\d\d"
+                  value={cardDateRepalce(dateCard)}
+                  onChange={(e) => setDateCard(e.target.value)}
+                />
+              </div>
+
+              <div>
+                <label htmlFor="cvc">cvc</label>
+                <input
+                  type="numeric"
+                  pattern="\d{3,4}"
+                  name="cvc"
+                  id="cvc"
+                  placeholder="123"
+                  onChange={(e) => setCvcCard(e.target.value)}
+                  value={cvcReplace(cvcCard)}
+                />
+              </div>
+            </S.Teste>
+            <S.Footer>
+              {" "}
+              <Button color="primary" type="submit">
+                Pagar Agora
+              </Button>
+            </S.Footer>
+          </form>
         </S.FormPayment>
       </S.Content>
     </S.Wrapper>

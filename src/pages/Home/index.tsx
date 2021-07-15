@@ -8,6 +8,7 @@ import Heading from "../../components/Heading/Heading";
 import CoverBanner from "../../components/CoverBanner/CoverBanner";
 import Footer from "../../components/Footer/Footer";
 import api from "../../services/api";
+import { useAuth } from "../../hooks/auth";
 
 const itemsBanner = [
   {
@@ -41,47 +42,6 @@ const itemsBanner = [
     backgroundImg: "https://wallpapercave.com/wp/wp3363181.jpg",
   },
 ];
-const gameCardIntem = [
-  {
-    name: "Nome do produto",
-    photos: [
-      {
-        url: "https://picsum.photos/500/500",
-      },
-    ],
-    price: "R$:240.50",
-    develop: {
-      name: "Rockstar Games",
-    },
-    promotionalPrice: "130.0",
-  },
-  {
-    name: "Nome do produto",
-    photos: [
-      {
-        url: "https://picsum.photos/500/500",
-      },
-    ],
-    price: "R$:240.50",
-    develop: {
-      name: "Rockstar Games",
-    },
-    promotionalPrice: "130.0",
-  },
-  {
-    name: "Nome do produto",
-    photos: [
-      {
-        url: "https://picsum.photos/500/500",
-      },
-    ],
-    price: "R$:240.50",
-    develop: {
-      name: "Rockstar Games",
-    },
-    promotionalPrice: "130.0",
-  },
-];
 
 export type GameCardProps = {
   id?: string;
@@ -100,6 +60,7 @@ export type GameCardProps = {
 };
 export default function Home() {
   const [games, setGames] = useState<GameCardProps[]>([]);
+  const { user } = useAuth();
 
   const total = 8;
 
@@ -112,12 +73,13 @@ export default function Home() {
   useEffect(() => {
     handleGamesList();
   }, []);
+
   return (
     <S.Wrapper>
       <Menu />
       <Container>
         <S.Content>
-          <SlideBanner items={itemsBanner} />
+          <SlideBanner items={games} />
         </S.Content>
       </Container>
       <S.GamesSectorOne>
@@ -132,11 +94,6 @@ export default function Home() {
           <Heading size="large" color="white">
             Populares
           </Heading>
-          <CoverBanner
-            title="Read Dead 2"
-            subTitle="O novo velho oeste para nova geração"
-            backgroundImg="https://wallpapercave.com/wp/wp3363181.jpg"
-          />
 
           <GameCardSlider items={games} />
         </S.GamesSectorTwo>

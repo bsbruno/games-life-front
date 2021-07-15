@@ -1,12 +1,13 @@
 import styled, { css } from "styled-components";
 import { CoverBannerProps } from "./CoverBanner";
 import media from "styled-media-query";
+import banner from "../../assets/attBanner.png";
 
 export const Wrapper = styled.section<CoverBannerProps>`
-  ${({ theme, backgroundImg }) => css`
+  ${({ theme, photos }) => css`
     position: relative;
-    background-image: url(${backgroundImg});
-    height: 23rem;
+    background-image: url(${photos != undefined ? photos[0].url : banner});
+    height: 25rem;
     background-position: center center;
     background-size: cover;
     display: flex;
@@ -21,7 +22,7 @@ export const Wrapper = styled.section<CoverBannerProps>`
       background-size: cover;
     }
     ${media.greaterThan("medium")`
-    height: 32rem;
+    height: 35rem;
     `}
   `}
 `;

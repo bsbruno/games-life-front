@@ -55,6 +55,13 @@ export const Content = styled.div`
   }
 `;
 
+export const ErrorInput = styled.div`
+  color: #ff3333;
+  font-size: 1.5rem;
+
+  margin-bottom: 0.4rem;
+`;
+
 export const Background = styled.div`
   background-image: url(${banner});
   background-size: cover;

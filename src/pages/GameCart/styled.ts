@@ -1,11 +1,17 @@
 import styled from "styled-components";
+import media from "styled-media-query";
 import * as S from "../../components/GameCard/styled";
+import * as Spayment from "../../components/PaymentOptions/styled";
 export const Wrapper = styled.div``;
 
 export const Container = styled.div`
   max-width: 98rem;
   margin: 0 auto;
   padding: 1rem;
+  ${media.greaterThan("medium")`
+
+
+`}
 `;
 export const Info = styled.div`
   margin: 3rem;
@@ -16,8 +22,15 @@ export const Info = styled.div`
 
 export const Content = styled.div`
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: 2fr 1fr;
+
   grid-gap: 3rem;
+  ${media.lessThan("medium")`
+
+  grid-template-columns: 1fr
+
+
+  `}
 `;
 
 export const MoreGames = styled.div``;
@@ -36,4 +49,8 @@ export const GameSlider = styled.div`
   }
 `;
 
-export const Payment = styled.div``;
+export const Payment = styled.div`
+  ${Spayment.Wrapper} {
+    width: 100%;
+  }
+`;

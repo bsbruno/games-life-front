@@ -94,7 +94,7 @@ export const Price = styled.div`
   ${({ theme }) => css`
     display: flex;
 
-    background-color: ${theme.colors.primary};
+    background-color: ${theme.colors.terciary};
     border-radius: ${theme.border.radius};
     align-items: center;
     font-weight: ${theme.font.bold};

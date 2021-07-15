@@ -5,7 +5,11 @@ import * as SCard from "../../components/GameCard/styled";
 import { GameCardProps } from "../../components/GameCard/GameCard";
 import banner from "../../assets/attBanner.png";
 type BackgroundImg = {
-  photos: string;
+  photos: [
+    {
+      url: string;
+    }
+  ];
 };
 
 export const Wrapper = styled.div`
@@ -18,12 +22,13 @@ export const Wrapper = styled.div`
 
 export const Background = styled.div<BackgroundImg>`
   ${({ theme, photos }) => css`
-    background-image: url(${photos});
+    background-image: url(${photos != undefined ? photos[0].url : null});
+
     width: 100%;
     height: 30rem;
     background-position: center center;
     object-fit: cover;
-    position: relative;
+
     ::after {
       content: "";
       bottom: 0;
@@ -34,23 +39,26 @@ export const Background = styled.div<BackgroundImg>`
       background-size: cover;
       z-index: -999;
     }
-
-    z-index: 0;
   `}
 `;
 export const Teste = styled.div``;
 
 export const Content = styled.div`
+  span {
+    padding: 0.5rem;
+  }
+
   ${({ theme }) => css`
     background-color: ${theme.colors.lightGray};
     display: grid;
-    position: relative;
+
     padding: 2rem;
 
     max-width: 900px;
     margin: 0 auto;
     max-height: 30rem;
-    top: -2rem;
+    top: -5rem;
+    position: relative;
 
     ${media.lessThan("medium")`
     display: none;
@@ -67,7 +75,7 @@ export const ContentMobile = styled.div`
     max-height: 100vh;
     margin-top: 1rem;
     margin-bottom: 1.5rem;
-    z-index: 999;
+    z-index: 2;
     ${media.greaterThan("medium")`
     display: none;
 

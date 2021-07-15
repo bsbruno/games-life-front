@@ -5,9 +5,7 @@ import Logo from "../Logo/Logo";
 import { FiMenu, FiUser, FiSearch } from "react-icons/fi";
 import { AiFillCloseCircle } from "react-icons/ai";
 import { Link } from "react-router-dom";
-import api from "../../services/api";
-import Cart from "../Cart";
-import CartList from "../CartList";
+import { useAuth } from "../../hooks/auth";
 import CartDropDow from "../CartDropDown";
 
 export type MenuProps = {
@@ -16,24 +14,8 @@ export type MenuProps = {
 
 export default function Menu({ userName }: MenuProps) {
   const [isOpen, setIsOpen] = useState(false);
-  /*  const [search, setSearch] = useState(""); */
+  const { user } = useAuth();
 
-  /*   async function handleSearch() {
-    const response = await api.get(`/games/search/title?game=${search}`);
-    console.log(response.data);
-  }
- */
-  const gameCardIntem = [
-    {
-      name: "Nome do produto",
-
-      price: "R$:240.50",
-      develop: {
-        name: "Rockstar Games",
-      },
-      promotionalPrice: "130.0",
-    },
-  ];
   return (
     <S.Wrapper>
       <S.WrapperLogo to="/">
@@ -45,12 +27,12 @@ export default function Menu({ userName }: MenuProps) {
 
         <S.CartButton>
           {" "}
-          <CartDropDow items={gameCardIntem} total={12} />
+          <CartDropDow />
         </S.CartButton>
-        {!!userName ? (
+        {!!user ? (
           <Link to="/account">
             <FiUser />
-            <span>{userName} </span>
+            <span>{user.name} </span>
           </Link>
         ) : (
           <Link to="/signin">
@@ -68,7 +50,7 @@ export default function Menu({ userName }: MenuProps) {
           <FiMenu />
         </S.MenulinkIcon>
         <S.CartDropDownMobile>
-          <CartDropDow items={gameCardIntem} total={12} />
+          <CartDropDow />
         </S.CartDropDownMobile>
       </S.MenuNavMobile>
 

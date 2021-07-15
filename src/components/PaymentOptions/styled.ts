@@ -16,7 +16,14 @@ export const FormPayment = styled.div`
 
   form {
     width: 100%;
-    padding: 1rem;
+    input[type="number"]::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+    }
+    input[type="number"] {
+      -moz-appearance: textfield;
+      appearance: textfield;
+    }
+
     input {
       padding: 1rem;
       width: 100%;

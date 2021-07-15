@@ -11,10 +11,11 @@ import api from "../../services/api";
 import Footer from "../../components/Footer/Footer";
 import { useParams } from "react-router-dom";
 import Search from "../../components/InputSearch";
+import Empty from "../../components/Empty";
 
 export default function Store({}) {
   const [isOpen, setIsOpen] = useState(false);
-  const [total, setTotal] = useState(3);
+  const [total, setTotal] = useState(5);
   const history = useParams();
 
   const [games, setGames] = useState<GameCardProps[]>([]);
@@ -50,7 +51,7 @@ export default function Store({}) {
   }, []);
   useEffect(() => {
     handleGamesFind();
-  }, [search]);
+  }, [search, total]);
 
   return (
     <>
@@ -143,6 +144,7 @@ export default function Store({}) {
               {games.map((item, index) => (
                 <GameCard
                   develop={item.develop}
+                  slug={item.slug}
                   name={item.name}
                   photos={item.photos}
                   price={item.price}
@@ -150,7 +152,9 @@ export default function Store({}) {
                   url_post={`/games/${item.slug}`}
                 />
               ))}
-              {games.length === 0 && <h1>Game Não encotrado</h1>}
+              {games.length === 0 && (
+                <Empty message="Game Não Encotrado" hiddenButton={true} />
+              )}
             </S.Card>
           </S.Content>
         </Container>

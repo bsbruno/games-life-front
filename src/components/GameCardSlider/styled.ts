@@ -39,14 +39,19 @@ export const Wrapper = styled.div<WrappeProps>`
         margin: 0 auto;
       }
       .slick-dots {
-        position: absolute;
+
+        position: relative;
+        display: flex;
+
         right: 0;
-        flex-direction: column;
+        flex-direction: row;
         height: 100%;
         top: 0;
         margin: 0;
         li {
-          margin: ${theme.spacings.xxsmall} 0;
+
+            margin-top:1rem ;
+
         }
       }
     `}

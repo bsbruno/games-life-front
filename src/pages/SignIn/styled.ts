@@ -66,30 +66,21 @@ export const Background = styled.div`
   background-image: url(${banner});
   background-size: cover;
   background-position: center center;
-  z-index: -9999;
+  z-index: -99;
+  opacity: 0.8;
   ${media.lessThan("medium")`
     display: none;
 
     `}
   flex: 1;
-  ::after {
-    content: "";
-    bottom: 0;
-    position: absolute;
-    width: 53.7%;
-    height: 100%;
-    left: 0;
-    background-color: rgba(0, 0, 0, 0.6);
-    background-size: cover;
-    z-index: -9;
-  }
 `;
 
 export const BackgroundText = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  z-index: 999;
+  opacity: 1;
+  z-index: 99;
   height: 100%;
   padding: 2rem;
   color: #fff;
@@ -99,6 +90,6 @@ export const BackgroundText = styled.div`
     margin-bottom: 2rem;
   }
   p {
-    color: #e8e8e8;
+    color: black;
   }
 `;

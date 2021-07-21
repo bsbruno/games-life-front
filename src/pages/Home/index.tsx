@@ -10,39 +10,6 @@ import Footer from "../../components/Footer/Footer";
 import api from "../../services/api";
 import { useAuth } from "../../hooks/auth";
 
-const itemsBanner = [
-  {
-    title: "Read dead is Back",
-    subTitle: "Faroeste volta ao seu mundo",
-    backgroundImg: "https://wallpapercave.com/wp/wp3363181.jpg",
-  },
-  {
-    title: "Read dead is Back",
-    subTitle: "Faroeste volta ao seu mundo",
-    backgroundImg: "https://wallpapercave.com/wp/wp3363181.jpg",
-  },
-  {
-    title: "Read dead is Back",
-    subTitle: "Faroeste volta ao seu mundo",
-    backgroundImg: "https://wallpapercave.com/wp/wp3363181.jpg",
-  },
-  {
-    title: "Read dead is Back",
-    subTitle: "Faroeste volta ao seu mundo",
-    backgroundImg: "https://wallpapercave.com/wp/wp3363181.jpg",
-  },
-  {
-    title: "Read dead is Back",
-    subTitle: "Faroeste volta ao seu mundo",
-    backgroundImg: "https://wallpapercave.com/wp/wp3363181.jpg",
-  },
-  {
-    title: "Read dead is Back",
-    subTitle: "Faroeste volta ao seu mundo",
-    backgroundImg: "https://wallpapercave.com/wp/wp3363181.jpg",
-  },
-];
-
 export type GameCardProps = {
   id?: string;
   slug?: string;

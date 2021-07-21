@@ -4,6 +4,7 @@ import Button from "../Button/Button";
 import { formatValue } from "../../utils/formatValue";
 import { Link } from "react-router-dom";
 import { useCart } from "../../hooks/cart";
+import { useAuth } from "../../hooks/auth";
 
 import * as S from "./styled";
 
@@ -12,8 +13,9 @@ export type CartListProps = {
 };
 
 export default function CartList({ hasButton = false }: CartListProps) {
+  const { user } = useAuth();
   const { products: items, total } = useCart();
-  console.log(items.length > 0 ? true : false);
+
   return (
     <S.Wrapper>
       {items.map((item) => (
@@ -22,10 +24,17 @@ export default function CartList({ hasButton = false }: CartListProps) {
       <S.Footer>
         {!hasButton && <span>Total:</span>}
         <S.Total> {formatValue(total)} </S.Total>
-        {hasButton && (
+        {hasButton && user && (
           <Link to="/game/cart">
             <Button as="a" color="secondary">
               Comprar Agora
+            </Button>
+          </Link>
+        )}
+        {!user && (
+          <Link to="/signin">
+            <Button as="a" color="secondary">
+              Login
             </Button>
           </Link>
         )}

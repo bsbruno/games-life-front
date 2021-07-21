@@ -1,7 +1,8 @@
 import styled from "styled-components";
 import media from "styled-media-query";
 import * as S from "../../components/GameCard/styled";
-import * as Spayment from "../../components/PaymentOptions/styled";
+import * as Spay from "../../components/PaymentOptions/styled";
+
 export const Wrapper = styled.div``;
 
 export const Container = styled.div`
@@ -23,7 +24,7 @@ export const Info = styled.div`
 export const Content = styled.div`
   display: grid;
   grid-template-columns: 2fr 1fr;
-
+  margin-top: 1rem;
   grid-gap: 3rem;
   ${media.lessThan("medium")`
 
@@ -50,7 +51,11 @@ export const GameSlider = styled.div`
 `;
 
 export const Payment = styled.div`
-  ${Spayment.Wrapper} {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  ${Spay.Wrapper} {
     width: 100%;
   }
 `;

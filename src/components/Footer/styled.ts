@@ -12,12 +12,15 @@ export const Content = styled.div`
   ${({ theme }) => css`
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: ${theme.grid.gutter};
-    margin-top: ${theme.spacings.medium};
+    gap: 3.2rem;
+    margin-top: 1.5rem;
+
+    padding: 1rem;
 
     ${media.greaterThan("medium")`
     grid-template-columns: repeat(4, 1fr);
 
+  margin:0.5rem  1rem ;
 
     `}
   `}

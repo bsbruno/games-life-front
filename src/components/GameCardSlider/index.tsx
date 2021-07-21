@@ -2,16 +2,18 @@ import React from "react";
 import Slider from "../Slider/Slider";
 import * as S from "./styled";
 import { Settings } from "react-slick";
-import { FiArrowLeft, FiArrowRight } from "react-icons/fi";
+
 import GameCard, { GameCardProps } from "../GameCard/GameCard";
 const settings: Settings = {
   slidesToShow: 4,
-  infinite: false,
-  arrows: true,
-  autoplay: true,
-  autoplaySpeed: 2000,
-  pauseOnHover: true,
-  lazyLoad: "ondemand",
+
+  arrows: false,
+  dots: true,
+  slidesToScroll: 3,
+  infinite: true,
+  speed: 500,
+
+  lazyLoad: "progressive",
 
   responsive: [
     {

@@ -4,27 +4,48 @@ import * as S from "./styled";
 import Button from "../Button/Button";
 import MasterCard from "../../assets/svg/Master.svg";
 import visa from "../../assets/svg/visa.svg";
-import { Formik, Form, Field } from "formik";
+
 import { useCart } from "../../hooks/cart";
 import {
   CreditCardRegex,
   cardReplace,
   dateCard as cardDateRepalce,
   cvcReplace,
+  clearNumber,
 } from "../../utils/regexPayment";
-import * as Yup from "yup";
+import api from "../../services/api";
+import axios from "axios";
 
 export default function PaymentOptions() {
   const [numberCard, setNumberCard] = useState("");
   const [dateCard, setDateCard] = useState("");
   const [cvcCard, setCvcCard] = useState("");
+  const [idProduct, setIdProduct] = useState([]);
+  const [error, setError] = React.useState(null);
+  const { total, products } = useCart();
+
   async function handleSubmit(event) {
     event.preventDefault();
-    console.log(numberCard.replace(/\.|\-/g, ""));
-    console.log(dateCard);
-  }
+    const cardNumber = numberCard.replace(/\.|\-/g, "");
+    const cardDateRefector = dateCard.replace(/\D+/g, "");
+    /*   if (cardNumber.length === 0) {
+      setError("Preencha um valor");
+      return false;
+    } else if (CreditCardRegex.card.test(cardNumber)) {
+      setError("Cartão Invalido");
+      return false;
+    } */
 
-  const { total } = useCart();
+    const response = await axios.post(`https://api.pagar.me/1/transactions`, {
+      api_key: "ak_test_67Q105LpH2eKiAsAVlGdvBKgLUpUFV",
+      card_number: cardNumber,
+      card_holder_name: "bruno de santana pinheiro",
+      card_cvv: cvcCard,
+      card_expiration_date: cardDateRefector,
+      amount: total * 100,
+    });
+    console.log(response);
+  }
 
   return (
     <S.Wrapper>
@@ -38,6 +59,7 @@ export default function PaymentOptions() {
         <S.FormPayment>
           <form onSubmit={handleSubmit}>
             <label htmlFor="card">Card</label>
+            {error && <div> {error} </div>}
             <input
               type="text"
               name="card"

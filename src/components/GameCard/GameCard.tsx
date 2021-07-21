@@ -6,6 +6,7 @@ import { MdRemoveShoppingCart } from "react-icons/md";
 import teste from "../../assets/attBanner.png";
 import { useParams, useHistory } from "react-router-dom";
 import { useCart } from "../../hooks/cart";
+import { formatValue } from "../../utils/formatValue";
 export type GameCardProps = {
   id?: string;
   slug?: string;
@@ -20,7 +21,7 @@ export type GameCardProps = {
     name: string;
   };
   price: string;
-  promotionalPrice?: string;
+
   url_post?: string;
 };
 
@@ -29,7 +30,7 @@ export default function GameCard({
   photos,
   price,
   name,
-  promotionalPrice,
+
   description,
   ...props
 }: GameCardProps) {
@@ -72,10 +73,9 @@ export default function GameCard({
         </S.Title>
 
         <S.PriceBox>
-          <span>{promotionalPrice} </span>
           <S.Price>
             {" "}
-            <p>{price}</p>{" "}
+            <p>{formatValue(Number(price))}</p>{" "}
           </S.Price>
 
           <Button

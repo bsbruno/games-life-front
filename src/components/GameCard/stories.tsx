@@ -11,7 +11,6 @@ export default {
     image: "https://picsum.photos/500/500",
     price: "R$:240.50",
     develop: "Rockstar Games",
-    promotionalPrice: 130.0,
   },
 } as Meta;
 

@@ -13,7 +13,7 @@ export default function Footer() {
             Contact Us
           </Heading>
 
-          <a href="mailto:sac@wongames.com">sac@wongames.com</a>
+          <a href="mailto:sac@lifeGames.com">sac@lifeGames.com</a>
         </S.Column>
         <S.Column>
           <Heading color="black" size="small">
@@ -21,28 +21,28 @@ export default function Footer() {
           </Heading>
           <nav aria-labelledby="social media">
             <a
-              href="https://www.instagram.com/won-games"
+              href="https://www.instagram.com/games-lifes"
               target="_blank"
               rel="noopenner, noreferrer"
             >
               Instagram
             </a>
             <a
-              href="https://www.twitter.com/won-games"
+              href="https://www.twitter.com/games-lifes"
               target="_blank"
               rel="noopenner, noreferrer"
             >
               Twitter
             </a>
             <a
-              href="https://www.youtube.com/won-games"
+              href="https://www.youtube.com/games-lifes"
               target="_blank"
               rel="noopenner, noreferrer"
             >
               Youtube
             </a>
             <a
-              href="https://www.facebook.com/won-games"
+              href="https://www.facebook.com/games-lifes"
               target="_blank"
               rel="noopenner, noreferrer"
             >

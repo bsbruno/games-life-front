@@ -4,12 +4,15 @@ import * as S from "./styled";
 import Menu from "../../components/Menu/Menu";
 import Heading from "../../components/Heading/Heading";
 import CartList from "../../components/CartList/index";
-import PaymentOptions from "../../components/PaymentOptions";
+import { useHistory, useLocation } from "react-router-dom";
 import { useCart } from "../../hooks/cart";
+import { useAuth } from "../../hooks/auth";
 import GameCardSlider from "../../components/GameCardSlider";
 import { GameCardProps } from "../../components/GameCard/GameCard";
 import api from "../../services/api";
 import Footer from "../../components/Footer/Footer";
+import Button from "../../components/Button/Button";
+import PaymentOptions from "../../components/PaymentOptions";
 
 export default function GameCart() {
   const [games, setGames] = useState<GameCardProps[]>([]);

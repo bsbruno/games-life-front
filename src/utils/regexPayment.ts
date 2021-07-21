@@ -20,11 +20,12 @@ export function cvcReplace(cvc: string) {
 (0[1-9]|10|11|12)/20[0-9]{2}$
 regex para validar datas validas
 */
-function clearNumber(value = "") {
+export function clearNumber(value = "") {
   return value.replace(/\D+/g, "");
 }
 export function dateCard(date: string) {
   const clearDate = clearNumber(date);
+
   if (clearDate.length >= 3) {
     return `${clearDate.slice(0, 2)}/${clearDate.slice(2, 4)}`;
   }

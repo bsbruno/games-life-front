@@ -22,15 +22,15 @@ type AuthContextData = {
   signIn(credentials: SignInCredentials): Promise<void>;
   signOut(): void;
 };
-const AppKeyUser = "@GameLife:token";
-const AppKeyToken = "@GameLife:user";
+const AppKeyToken = "@GameLife:token";
+const AppKeyUser = "@GameLife:user";
 
 const AuthContext = createContext<AuthContextData>({} as AuthContextData);
 
 export const AuthProvider = ({ children }) => {
   const [data, setData] = useState<AuthState>(() => {
-    const token = localStorage.getItem(AppKeyUser);
-    const user = localStorage.getItem(AppKeyToken);
+    const token = localStorage.getItem(AppKeyToken);
+    const user = localStorage.getItem(AppKeyUser);
 
     if (token && user) {
       api.defaults.headers.authorization = `Bearer ${token}`;
@@ -41,7 +41,7 @@ export const AuthProvider = ({ children }) => {
 
   const signIn = useCallback(async ({ email, password }) => {
     const response = await api.post("/sessions", { email, password });
-    console.log(response);
+
     const { token, user } = response.data;
 
     localStorage.setItem(AppKeyToken, token);

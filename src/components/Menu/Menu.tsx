@@ -7,6 +7,7 @@ import { AiFillCloseCircle } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import { useAuth } from "../../hooks/auth";
 import CartDropDow from "../CartDropDown";
+import Dropdown from "../Dropdown";
 
 export type MenuProps = {
   userName?: string;
@@ -30,10 +31,12 @@ export default function Menu({ userName }: MenuProps) {
           <CartDropDow />
         </S.CartButton>
         {!!user ? (
-          <Link to="/account">
-            <FiUser />
-            <span>{user.name} </span>
-          </Link>
+          <>
+            <Dropdown name={<FiUser />}>
+              <button>LogOut</button>
+            </Dropdown>
+            <span>Olá, {user.name} </span>
+          </>
         ) : (
           <Link to="/signin">
             {" "}
@@ -67,7 +70,7 @@ export default function Menu({ userName }: MenuProps) {
           <S.MenuLogin>
             <S.Menulink to="/signin">Sign Up</S.Menulink>
             <span>Or</span>
-            <Link to="/signup">
+            <Link to="/signin">
               {" "}
               <Button color="secondary">Log In Now</Button>
             </Link>
